@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joemar Paul Labanon | html website 2.0 </title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap');
+
+:root{
+    --red:#ff1744;
+    --red2:#ff3158;
+    --dark:#050507;
+    --dark2:#0b0b0f;
+    --card:#101015;
+    --text:#f5f5f7;
+    --muted:#9999a4;
+    --line:rgba(255,23,68,.24);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:
+      radial-gradient(circle at 80% 10%,rgba(255,23,68,.12),transparent 28%),
+      radial-gradient(circle at 15% 45%,rgba(255,23,68,.07),transparent 25%),
+      var(--dark);
+    color:var(--text);
+    overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+section{scroll-margin-top:110px}
+
+body::before{
+    content:"";
+    position:fixed;inset:0;pointer-events:none;z-index:20;
+    background:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:100% 4px;
+    mix-blend-mode:overlay;
+    opacity:.25;
+}
+
+.container{width:min(1120px,92%);margin:auto}
+
+/* NAV */
+.nav{
+    position:fixed;top:18px;left:50%;transform:translateX(-50%);
+    width:min(1050px,92%);
+    padding:13px 18px;
+    background:rgba(8,8,11,.82);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,23,68,.25);
+    border-radius:50px;
+    display:flex;align-items:center;justify-content:space-between;
+    z-index:100;
+    box-shadow:0 0 30px rgba(0,0,0,.45), inset 0 0 25px rgba(255,23,68,.025);
+}
+.logo{
+    font-family:Orbitron,sans-serif;font-weight:800;letter-spacing:2px;
+    font-size:18px;color:#fff;white-space:nowrap;
+}
+.logo span{color:var(--red);text-shadow:0 0 15px rgba(255,23,68,.7)}
+.navlinks{display:flex;gap:5px;align-items:center}
+.navlinks a{
+    color:#aaa;font-size:12px;font-weight:600;letter-spacing:.7px;
+    padding:10px 12px;border-radius:30px;transition:.25s;
+}
+.navlinks a:hover,.navlinks a.active{
+    color:#fff;background:rgba(255,23,68,.11);
+    text-shadow:0 0 12px rgba(255,23,68,.7);
+}
+.menu{display:none;background:none;border:0;color:white;font-size:22px;cursor:pointer}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:130px 0 70px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:50px}
+.kicker{
+    color:var(--red);font-size:13px;font-weight:800;letter-spacing:3px;
+    text-transform:uppercase;margin-bottom:18px;
+}
+h1{
+    font-family:Orbitron,sans-serif;font-size:clamp(42px,7vw,78px);
+    line-height:.98;letter-spacing:-3px;margin-bottom:20px;
+}
+h1 .outline{
+    color:transparent;-webkit-text-stroke:1px #fff;
+}
+h1 .red{color:var(--red);text-shadow:0 0 28px rgba(255,23,68,.28)}
+.hero p{color:var(--muted);max-width:570px;line-height:1.8;font-size:15px}
+.buttons{display:flex;gap:13px;margin-top:30px;flex-wrap:wrap}
+.btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:13px 22px;border-radius:7px;font-size:13px;font-weight:800;
+    border:1px solid var(--red);transition:.25s;cursor:pointer;
+}
+.btn.primary{
+    background:var(--red);color:#fff;
+    box-shadow:0 0 25px rgba(255,23,68,.25);
+}
+.btn.primary:hover{transform:translateY(-3px);box-shadow:0 0 35px rgba(255,23,68,.5)}
+.btn.secondary{color:#fff;background:transparent}
+.btn.secondary:hover{background:rgba(255,23,68,.1);transform:translateY(-3px)}
+
+.profile-wrap{display:flex;justify-content:center;position:relative}
+.profile{
+    width:min(390px,75vw);aspect-ratio:1;
+    border-radius:24px;
+    background:
+      linear-gradient(145deg,rgba(255,23,68,.17),transparent 40%),
+      #0d0d12;
+    border:1px solid rgba(255,23,68,.4);
+    position:relative;overflow:hidden;
+    box-shadow:0 0 70px rgba(255,23,68,.13);
+}
+.profile::before{
+    content:"";position:absolute;inset:22px;
+    border:1px solid rgba(255,23,68,.2);border-radius:18px;
+}
+.profile::after{
+    content:"";position:absolute;width:190px;height:190px;
+    right:-70px;top:-70px;border-radius:50%;
+    background:var(--red);filter:blur(85px);opacity:.22;
+}
+.avatar{
+    position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;
+}
+.avatar-img{
+    width:80%;
+    height:90%;
+    object-fit:cover;
+    border-radius:18px;
+    border:2px solid var(--red);
+    box-shadow:0 0 30px rgba(255,23,68,.35);
+    filter:drop-shadow(0 0 22px rgba(255,23,68,.25));
+}
+.badge{
+    position:absolute;left:18px;bottom:18px;padding:9px 13px;
+    border:1px solid rgba(255,23,68,.4);background:rgba(5,5,7,.75);
+    border-radius:6px;font-size:10px;letter-spacing:1.5px;color:#ddd;
+}
+.corner{position:absolute;width:25px;height:25px;border-color:var(--red);border-style:solid}
+.c1{top:14px;left:14px;border-width:2px 0 0 2px}.c2{top:14px;right:14px;border-width:2px 2px 0 0}
+.c3{bottom:14px;left:14px;border-width:0 0 2px 2px}.c4{bottom:14px;right:14px;border-width:0 2px 2px 0}
+
+/* GENERAL */
+.section{padding:105px 0}
+.section-head{margin-bottom:42px}
+.eyebrow{color:var(--red);font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.section h2{
+    font-family:Orbitron,sans-serif;font-size:clamp(28px,4vw,43px);
+    line-height:1.1
+}
+.section-head p{color:var(--muted);margin-top:12px;max-width:650px;line-height:1.7;font-size:14px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:45px}
+.stat,.card{
+    background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+    border:1px solid rgba(255,255,255,.08);border-radius:12px;
+}
+.stat{padding:25px}
+.stat strong{display:block;font-family:Orbitron;font-size:27px;color:var(--red)}
+.stat span{display:block;color:#858590;font-size:11px;margin-top:8px;text-transform:uppercase;letter-spacing:1px}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.card{padding:30px}
+.card h3{font-family:Orbitron;font-size:18px;margin-bottom:15px}
+.card p{color:var(--muted);font-size:14px;line-height:1.8}
+.info-list{display:grid;gap:14px;margin-top:18px}
+.info{display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:11px;font-size:13px}
+.info span:first-child{color:#777}.info span:last-child{color:#eee}
+
+/* SERVICES */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.service{padding:28px;position:relative;overflow:hidden}
+.service::before{
+    content:"";position:absolute;top:0;left:0;width:45px;height:2px;background:var(--red);
+    box-shadow:0 0 15px var(--red)
+}
+.icon{
+    width:45px;height:45px;border:1px solid var(--line);border-radius:9px;
+    display:grid;place-items:center;color:var(--red);font-size:20px;margin-bottom:20px;
+}
+.service h3{font-size:17px;margin-bottom:10px}.service p{font-size:13px}
+
+/* PROJECTS */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.project{min-height:270px;position:relative;overflow:hidden;padding:27px;display:flex;flex-direction:column;justify-content:flex-end}
+.project-bg{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(135deg,rgba(255,23,68,.18),transparent 45%),
+      repeating-linear-gradient(135deg,rgba(255,23,68,.035) 0 1px,transparent 1px 12px);
+}
+.project-content{position:relative;z-index:2}
+.tag{color:var(--red);font-size:10px;letter-spacing:2px;font-weight:800}
+.project h3{font-family:Orbitron;font-size:22px;margin:9px 0}
+.project p{font-size:13px;color:#999;max-width:500px;line-height:1.6}
+.project-link{display:inline-block;margin-top:16px;font-size:12px;color:#fff;font-weight:700}
+
+/* SKILLS */
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.skill{margin-bottom:20px}
+.skill-top{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;color:#ddd}
+.bar{height:6px;background:#1b1b20;border-radius:10px;overflow:hidden}
+.fill{height:100%;width:var(--w);background:var(--red);box-shadow:0 0 14px rgba(255,23,68,.65);border-radius:10px}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px}
+.socials{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.socials a{
+    width:42px;height:42px;display:grid;place-items:center;
+    border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#aaa;transition:.25s
+}
+.socials a:hover{border-color:var(--red);color:var(--red);transform:translateY(-3px)}
+form{display:grid;gap:13px}
+input,textarea{
+    width:100%;border:1px solid rgba(255,255,255,.1);outline:0;
+    background:#09090c;color:white;border-radius:7px;padding:14px;
+    font:13px Inter;transition:.25s
+}
+input:focus,textarea:focus{border-color:rgba(255,23,68,.6);box-shadow:0 0 18px rgba(255,23,68,.08)}
+textarea{min-height:140px;resize:vertical}
+
+/* FOOTER */
+footer{border-top:1px solid rgba(255,255,255,.07);padding:28px 0;color:#666;font-size:11px;text-align:center}
+footer span{color:var(--red)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.show{opacity:1;transform:none}
+
+
+/* =========================
+   MEDIA / VIDEO / IMAGE / MUSIC
+========================= */
+
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.media-card{
+    background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+    border:1px solid rgba(255,23,68,.35);
+    border-radius:14px;
+    padding:20px;
+    box-shadow:0 0 30px rgba(255,23,68,.08);
+    transition:.3s ease;
+}
+
+.media-card:hover{
+    transform:translateY(-5px);
+    border-color:var(--red);
+    box-shadow:0 0 35px rgba(255,23,68,.2);
+}
+
+.media-card h3{
+    font-family:Orbitron,sans-serif;
+    color:var(--red);
+    margin-bottom:14px;
+    font-size:17px;
+}
+
+.media-card video{
+    width:100%;
+    display:block;
+    border-radius:10px;
+    border:1px solid rgba(255,23,68,.3);
+    background:#000;
+}
+
+.media-card p{
+    color:var(--muted);
+    margin-top:12px;
+    font-size:13px;
+}
+
+.image-frame{
+    max-width:800px;
+    margin:auto;
+    padding:12px;
+    background:#050507;
+    border:3px solid var(--red);
+    border-radius:20px;
+    box-shadow:0 0 15px rgba(255,23,68,.4),0 0 45px rgba(255,23,68,.15);
+    transition:.3s ease;
+}
+
+.image-frame:hover{
+    transform:scale(1.01);
+    box-shadow:0 0 20px rgba(255,23,68,.6),0 0 60px rgba(255,23,68,.25);
+}
+
+.image-frame img{
+    width:100%;
+    max-height:600px;
+    display:block;
+    border-radius:12px;
+    object-fit:cover;
+}
+
+.image-caption{
+    padding:18px 10px 8px;
+}
+
+.image-caption h3{
+    font-family:Orbitron,sans-serif;
+    color:var(--red);
+    margin-bottom:7px;
+}
+
+.image-caption p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.music-card{
+    max-width:800px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    gap:25px;
+    padding:25px;
+    background:linear-gradient(145deg,rgba(255,23,68,.12),rgba(255,255,255,.02));
+    border:2px solid var(--red);
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(255,23,68,.25);
+    transition:.3s ease;
+}
+
+.music-card:hover{
+    box-shadow:0 0 35px rgba(255,23,68,.4);
+}
+
+.music-icon{
+    width:80px;
+    height:80px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:42px;
+    color:var(--red);
+    border:2px solid var(--red);
+    border-radius:50%;
+    box-shadow:0 0 20px rgba(255,23,68,.35);
+}
+
+.music-info{flex:1}
+
+.music-info h3{
+    font-family:Orbitron,sans-serif;
+    color:var(--red);
+    margin-bottom:8px;
+}
+
+.music-info p{
+    color:var(--muted);
+    margin-bottom:15px;
+    font-size:13px;
+}
+
+.music-info audio{
+    width:100%;
+}
+
+/* MOBILE */
+@media(max-width:850px){
+    .nav{top:10px}
+    .navlinks{
+        position:absolute;top:62px;left:0;right:0;padding:12px;
+        background:rgba(8,8,11,.96);border:1px solid rgba(255,23,68,.2);
+        border-radius:16px;display:none;flex-direction:column
+    }
+    .navlinks.open{display:flex}
+    .navlinks a{width:100%;text-align:center}
+    .menu{display:block}
+    .hero{padding-top:125px}
+    .hero-grid{grid-template-columns:1fr;text-align:center}
+    .hero p{margin:auto}
+    .buttons{justify-content:center}
+    .profile-wrap{order:-1}
+    .profile{width:min(310px,78vw)}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .about-grid,.skills,.contact-grid{grid-template-columns:1fr}
+    .services{grid-template-columns:1fr}
+    .projects{grid-template-columns:1fr}
+
+    .video-grid{grid-template-columns:1fr}
+    .music-card{flex-direction:column;text-align:center}
+    .music-info{width:100%}
+}
+@media(max-width:480px){
+    h1{letter-spacing:-2px}
+    .stats{grid-template-columns:1fr 1fr}
+    .stat{padding:18px}
+    .stat strong{font-size:21px}
+    .section{padding:80px 0}
+}
+
+/* =========================
+   WELCOME POP-UP
+========================= */
+.popup-overlay{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.78);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    animation:fadeIn .5s ease;
+}
+.popup{
+    position:relative;
+    width:90%;
+    max-width:470px;
+    background:linear-gradient(145deg,#15151b,#08080b);
+    padding:42px 30px;
+    text-align:center;
+    border:1px solid rgba(255,23,68,.5);
+    border-radius:15px;
+    box-shadow:0 0 55px rgba(255,23,68,.22),0 15px 40px rgba(0,0,0,.6);
+    animation:popupScale .6s ease;
+}
+.popup h2{
+    margin:0 0 12px;
+    font-family:Orbitron,sans-serif;
+    font-size:28px;
+    color:#fff;
+}
+.popup p{
+    color:#aaa;
+    margin-bottom:25px;
+    line-height:1.7;
+    font-size:14px;
+}
+.popup-logo{
+    width:105px;
+    height:105px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    border:2px solid var(--red);
+    box-shadow:0 0 25px rgba(255,23,68,.35);
+    animation:logoPop .8s ease;
+}
+.popup-button{
+    background:var(--red);
+    color:#fff;
+    border:1px solid var(--red);
+    padding:12px 25px;
+    border-radius:7px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:800;
+    transition:.3s;
+}
+.popup-button:hover{
+    background:transparent;
+    color:#fff;
+    transform:scale(1.06);
+    box-shadow:0 0 25px rgba(255,23,68,.35);
+}
+.close-popup{
+    position:absolute;
+    top:10px;
+    right:17px;
+    font-size:28px;
+    color:#777;
+    cursor:pointer;
+    transition:.3s;
+}
+.close-popup:hover{
+    color:var(--red);
+    transform:rotate(90deg);
+}
+@keyframes logoPop{
+    0%{opacity:0;transform:scale(.5) rotate(-10deg)}
+    70%{transform:scale(1.1) rotate(3deg)}
+    100%{opacity:1;transform:scale(1) rotate(0)}
+}
+@keyframes fadeIn{
+    from{opacity:0} to{opacity:1}
+}
+@keyframes popupScale{
+    from{opacity:0;transform:scale(.5) translateY(-30px)}
+    to{opacity:1;transform:scale(1) translateY(0)}
+}
+.popup-overlay.hide{animation:fadeOut .6s ease forwards}
+.popup-overlay.hide .popup{animation:popupClose .6s ease forwards}
+@keyframes fadeOut{
+    from{opacity:1} to{opacity:0}
+}
+@keyframes popupClose{
+    from{opacity:1;transform:scale(1)}
+    to{opacity:0;transform:scale(.5)}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     WELCOME POP-UP
+========================= -->
+<div class="popup-overlay" id="welcomePopup">
+    <div class="popup">
+        <span class="close-popup" onclick="closePopup()">&times;</span>
+
+        <img
+            src="c:\Users\user\Pictures\Untitled68_20260725120043.jpg"
+            alt="Joemar Paul Labanon Logo"
+            class="popup-logo"
+        >
+
+        <h2>WELCOME!</h2>
+
+        <p>
+            "If my life were a program, you'd be the line I would never delete."
+            <br><br>
+            Welcome to my personal webpage:
+            <strong>Joemar Paul D. Labanon</strong>.
+            <br>
+            BSIT · College of Computing and Information Sciences
+        </p>
+
+        <button class="popup-button" onclick="closePopup()">
+            VIEW MY PAGE
+        </button>
+    </div>
+</div>
+
+
+<nav class="nav">
+    <a href="#home" class="logo">JOEMAR PAUL LABANON (KYOUJIN)<span>.</span></a>
+    <div class="navlinks" id="navlinks">
+        <a href="#home" class="active">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#services">SERVICE</a>
+        <a href="#projects">PROJECT</a>
+        <a href="#skills">SKILL</a>
+        <a href="#media">MEDIA</a>
+        <a href="#contact">CONTACT</a>
+    </div>
+    <button class="menu" id="menu">☰</button>
+</nav>
+
+<main>
+
+<section class="hero" id="home">
+    <div class="container hero-grid">
+        <div class="reveal">
+            <div class="kicker">BSIT • Creative Developer</div>
+            <h1>JOEMAR<br><span class="outline">PAUL</span> <span class="red">LABANON</span></h1>
+            <p>
+                Welcome to my HTML website 2.0 . I'm a BSIT student at University of Antique - Tario Lim Memorial Campus,
+                walang ambag sa buhay tutulog nalang, AI daw yung code ko kaya sa iba kayo huminge. This a new 2.0 html its still under maintenance.
+            </p>
+            <div class="buttons">
+                <a class="btn primary" href="#projects">VIEW PROJECTS</a>
+                <a class="btn secondary" href="#contact">CONTACT ME</a>
+            </div>
+        </div>
+
+        <div class="profile-wrap reveal">
+            <div class="profile">
+                <div class="corner c1"></div><div class="corner c2"></div>
+                <div class="corner c3"></div><div class="corner c4"></div>
+                <div class="avatar">
+                    <!-- CUSTOM AVATAR IMAGE
+                         Put your image in the same folder as index.html
+                         and change "avatar.jpg" to your filename. -->
+                    <img src="c:\Users\user\Pictures\Camera\IMG20260309171744.jpg" alt="Joemar Paul Labanon" class="avatar-img">
+                </div>
+                <div class="badge">KYOUJIN</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="about">
+<div class="container reveal">
+    <div class="section-head">
+        <div class="eyebrow">01 — ABOUT</div>
+        <h2>ABOUT ME</h2>
+        <p>I am just an ordinary boy who has many hobbies nad skills, and first of all i am not good at programming i am still learning
+            but willing to b your help partner on other way, i am a electrician and computer support sevices i am good at fixing things.
+        </p>
+    </div>
+
+    <div class="about-grid">
+        <div class="card">
+            <h3>WHO I AM</h3>
+            <p>
+               Hi! This is Joemar Paul Labanon BSIT 2A but you can call me JP, Kiyo, Jep, Paul or whatever you prefer,
+i am just a simple person, this years is my goal is to graduate at college and work abroad to help my parents and siblings,
+in my free time i help my father fixing electronics appliances or catch a fish to sell because me and my father is electricians and fisherman, And i help my mother 
+at farms.
+            </p>
+        </div>
+        <div class="card">
+            <h3>PROFILE</h3>
+            <div class="info-list">
+                <div class="info"><span>Name</span><span>Joemar Paul Labanon</span></div>
+                <div class="info"><span>Course</span><span>BS Information Technology</span></div>
+                <div class="info"><span>Focus</span><span>Web &amp; Hardware</span></div>
+                <div class="info"><span>Style</span><span>Creative / Minimal / Futuristic</span></div>
+                <div class="info"><span>Hobbies</span><span>Cycling / Editing / Gaming</span></div>
+                <div class="info"><span>Skills</span><span>Animate / Drawing / Electronics</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat"><strong>BSIT</strong><span>Course</span></div>
+        <div class="stat"><strong>2A</strong><span>Section</span></div>
+        <div class="stat"><strong>WEB</strong><span>Focus</span></div>
+        <div class="stat"><strong>Duhong</strong><span>Ideas</span></div>
+    </div>
+</div>
+</section>
+
+<section class="section" id="services">
+<div class="container reveal">
+    <div class="section-head">
+        <div class="eyebrow">02 — SERVICES</div>
+        <h2>WHAT I DO</h2>
+        <p>Things I enjoy working on and skills I continue to develop.</p>
+    </div>
+
+    <div class="services">
+        <div class="card service">
+            <div class="icon">&lt;/&gt;</div>
+            <h3>Editing</h3>
+            <p>CapCut, Alight Motion, After Effects, etc.</p>
+        </div>
+        <div class="card service">
+            <div class="icon">✦</div>
+            <h3>Gaming & Streaming</h3>
+            <p>A content creator at Tiktok and a Streamer at Twitch, Played at CANADA as Team captain of BGL-V2 squad on Bloodstrike Mobile </p>
+        </div>
+        <div class="card service">
+            <div class="icon">⌘</div>
+            <h3>ANIMATING</h3>
+            <p>Animating a drawing, Im a artist.</p>
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="section" id="projects">
+<div class="container reveal">
+    <div class="section-head">
+        <div class="eyebrow">03 — PROJECTS</div>
+        <h2>SELECTED WORK</h2>
+        <p>A few projects and concepts that represent my current creative direction.</p>
+    </div>
+
+    <div class="projects">
+        <article class="card project">
+            <div class="project-bg"></div>
+            <div class="project-content">
+                <div class="tag">WEB APP • 01</div>
+                <h3>NUVIA</h3>
+                <p>A futuristic technology and gaming interface concept with authentication, dashboard and product pages.</p>
+                <a class="project-link" href="#" onclick="return demo('NUVIA')">VIEW PROJECT →</a>
+            </div>
+        </article>
+
+        <article class="card project">
+            <div class="project-bg"></div>
+            <div class="project-content">
+                <div class="tag">PORTFOLIO • 02</div>
+                <h3>PERSONAL SITE</h3>
+                <p>A responsive portfolio designed to showcase skills, school work, projects and contact information.</p>
+                <a class="project-link" href="#home">VIEW PROJECT →</a>
+            </div>
+        </article>
+
+        <article class="card project">
+            <div class="project-bg"></div>
+            <div class="project-content">
+                <div class="tag">PROGRAMMING • 03</div>
+                <h3>HTML PROJECTS</h3>
+                <p>Small applications exploring operators, conditions, loops, input handling and GUI programming.</p>
+                <a class="project-link" href="#" onclick="return demo('HTML PROJECTS')">VIEW PROJECT →</a>
+            </div>
+        </article>
+
+        <article class="card project">
+            <div class="project-bg"></div>
+            <div class="project-content">
+                <div class="tag">CREATIVE • 04</div>
+                <h3>DIGITAL DESIGNS</h3>
+                <p>Gaming graphics, branding concepts, posters and visual experiments with a dark neon aesthetic.</p>
+                <a class="project-link" href="#" onclick="return demo('DIGITAL DESIGNS')">VIEW PROJECT →</a>
+            </div>
+        </article>
+    </div>
+</div>
+</section>
+
+<section class="section" id="skills">
+<div class="container reveal">
+    <div class="section-head">
+        <div class="eyebrow">04 — SKILLS</div>
+        <h2>MY SKILLSET</h2>
+        <p>Current self-assessed levels. These values can be changed directly in the HTML.</p>
+    </div>
+
+    <div class="skills">
+        <div class="card">
+            <div class="skill"><div class="skill-top"><span>HTML</span><span>53%</span></div><div class="bar"><div class="fill" style="--w:53%"></div></div></div>
+            <div class="skill"><div class="skill-top"><span>PYTHON</span><span>40%</span></div><div class="bar"><div class="fill" style="--w:40%"></div></div></div>
+            <div class="skill"><div class="skill-top"><span>C++</span><span>35%</span></div><div class="bar"><div class="fill" style="--w:35%"></div></div></div>
+        </div>
+        <div class="card">
+            <div class="skill"><div class="skill-top"><span>EDITING</span><span>85%</span></div><div class="bar"><div class="fill" style="--w:85%"></div></div></div>
+            <div class="skill"><div class="skill-top"><span>DRAWING</span><span>90%</span></div><div class="bar"><div class="fill" style="--w:90%"></div></div></div>
+            <div class="skill"><div class="skill-top"><span>UI DESIGN</span><span>90%</span></div><div class="bar"><div class="fill" style="--w:90%"></div></div></div>
+        </div>
+    </div>
+</div>
+</section>
+
+
+<section class="section" id="media">
+<div class="container reveal">
+
+    <div class="section-head">
+        <div class="eyebrow">05 — MEDIA</div>
+        <h2>MY MEDIA</h2>
+        <p>Customize the videos, image, border and music below by changing the file names.</p>
+    </div>
+
+    <!-- TWO VIDEOS -->
+    <div class="video-grid">
+
+        <div class="media-card">
+            <h3>VIDEO 01</h3>
+            <video controls>
+                <source src="c:\Users\user\Videos\YTDown.com_YouTube_FIRST-GIRLFRIEND-TRAILER-Pinoy-Animation_Media_5tLiBxSGVZ4_001_1080p.mp4" type="video/mp4">
+                Your browser does not support video.
+            </video>
+            <p>PINOY ANIMATION PT1</p>
+        </div>
+
+        <div class="media-card">
+            <h3>VIDEO 02</h3>
+            <video controls>
+                <source src="c:\Users\user\Videos\YTDown.com_YouTube_FIRST-GIRLFRIEND-EP-2-OFFICIAL-TRAILER-P_Media_9mBKfKcG_CM_001_1080p.mp4" type="video/mp4">
+                Your browser does not support video.
+            </video>
+            <p>PINOY ANIMATION PT2</p>
+        </div>
+
+    </div>
+
+    <!-- IMAGE WITH CUSTOMIZABLE BORDER -->
+    <div style="margin-top:50px;">
+        <div class="eyebrow">IMAGE</div>
+        <div class="image-frame">
+            <img src="c:\Users\user\Pictures\Camera\IMG20260408193419.jpg" alt="My Favorite picture">
+            <div class="image-caption">
+                <h3>MY FAVORITE PHOTO</h3>
+                <figcaption>A certificate i recieved at championship tournament at Canada</figcaption>
+            </div>
+        </div>
+    </div>
+
+    <!-- MUSIC -->
+    <div style="margin-top:50px;">
+        <div class="eyebrow">AUDIO</div>
+        <div class="music-card">
+            <div class="music-icon">♪</div>
+            <div class="music-info">
+                <h3>MY MUSIC</h3>
+                <p>Treat You Better by Shawn Mendes </p>
+                <audio controls>
+                    <source src="c:\Users\user\Downloads\Shawn Mendes - Treat You Better [lY2yjAdbvdQ].mp3" type="audio/mpeg">
+                    Your browser does not support audio.
+                </audio>
+            </div>
+        </div>
+    </div>
+
+</div>
+</section>
+
+<section class="section" id="contact">
+<div class="container reveal">
+    <div class="section-head">
+        <div class="eyebrow">06 — CONTACT</div>
+        <h2>LET'S CONNECT</h2>
+        <p>Have an idea, school project or website concept? Send a message.</p>
+    </div>
+
+    <div class="contact-grid">
+        <div class="card">
+            <h3>CONTACT INFO</h3>
+            <p>Contact me if you need somee help (Wag lang sa pera wala ako niyan)</p>
+            <div class="info-list">
+                <div class="info"><span>Email</span><span>labanonjp45@gmail.com</span></div>
+                <div class="info"><span>Address</span><span>Guisijan, Laua-an, Antique</span></div>
+                <div class="info"><span>Status</span><span>Online kase walng pera</span></div>
+            </div>
+            <div class="socials">
+                <a href="#" aria-label="Facebook">f</a>
+                <a href="#" aria-label="Instagram">◎</a>
+                <a href="#" aria-label="GitHub">◖</a>
+                <a href="#" aria-label="TikTok">♪</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <form id="contactForm">
+                <input type="text" placeholder="YOUR NAME" required>
+                <input type="email" placeholder="YOUR EMAIL" required>
+                <input type="text" placeholder="SUBJECT" required>
+                <textarea placeholder="YOUR MESSAGE" required></textarea>
+                <button class="btn primary" type="submit">SEND MESSAGE</button>
+            </form>
+        </div>
+    </div>
+</div>
+</section>
+
+</main>
+
+<footer>
+    © 2026 <span>JOEMAR PAUL LABANON</span> — BSIT 2A
+</footer>
+
+<script>
+const menu = document.getElementById("menu");
+const navlinks = document.getElementById("navlinks");
+
+menu.addEventListener("click", () => navlinks.classList.toggle("open"));
+
+document.querySelectorAll(".navlinks a").forEach(link => {
+    link.addEventListener("click", () => navlinks.classList.remove("open"));
+});
+
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add("show");
+    });
+},{threshold:.12});
+
+document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+const sections = document.querySelectorAll("section[id]");
+const navItems = document.querySelectorAll(".navlinks a");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach(section => {
+        if(scrollY >= section.offsetTop - 180) current = section.id;
+    });
+    navItems.forEach(item => {
+        item.classList.toggle("active", item.getAttribute("href") === "#" + current);
+    });
+});
+
+function demo(name){
+    alert(name + " is a demo project. Replace this link with your real project URL.");
+    return false;
+}
+
+document.getElementById("contactForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    alert("Message form demo: connect this form to your email service or backend.");
+});
+
+// Welcome popup
+function closePopup(){
+    const popup = document.getElementById("welcomePopup");
+    popup.classList.add("hide");
+
+    setTimeout(function(){
+        popup.style.display = "none";
+    }, 400);
+}
+
+document.getElementById("welcomePopup").addEventListener("click", function(event){
+    if(event.target === this){
+        closePopup();
+    }
+});
+
+</script>
+
+</body>
+</html>
