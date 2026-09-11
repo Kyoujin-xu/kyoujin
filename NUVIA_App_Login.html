@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUVIA APP -Login UI</title>
+    <!-- To loads an external icon library. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- To applies the custom styling to all text on your login screen like headings, placeholders, button text). -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Fullscreen Layout Setup */
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #030206;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1200px;
+        }
+
+        /* Sci-Fi Kiosk Wrapper Expanded for Fullscreen */
+        .kiosk-wrapper {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            max-width: 1400px;
+            max-height: 850px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: rotateX(0deg) rotateY(0deg);
+            transform-style: preserve-3d;
+        }
+
+        /* Outer Curved Hardware Frame */
+        .kiosk-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1b1924 0%, #0d0c12 50%, #171520 100%);
+            border-radius: 28px;
+            padding: 2% 4%;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.9),
+                0 0 30px rgba(138, 43, 226, 0.3),
+                inset 0 1px 2px rgba(255, 255, 255, 0.2);
+            border: 1px solid #2d293d;
+        }
+
+        /* Curved Metallic Side Panels & Speaker Grills */
+        .kiosk-frame::before, .kiosk-frame::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            height: 80%;
+            width: 25px;
+            background: repeating-linear-gradient(
+                0deg,
+                #121018,
+                #121018 2px,
+                #221f2d 2px,
+                #221f2d 4px
+            );
+            border-radius: 6px;
+            border: 1px solid #322b45;
+        }
+        .kiosk-frame::before { left: 12px; }
+        .kiosk-frame::after { right: 12px; }
+
+        /* Neon Bottom LED Light Bar */
+        .led-bar {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 4px;
+            background: #9629fc;
+            border-radius: 2px;
+            box-shadow: 0 0 15px #9528fa, 0 0 30px #9629fd;
+        }
+
+        /* The Main Screen Container */
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #090611;
+            border-radius: 16px;
+            display: flex;
+            overflow: hidden;
+            border: 1.5px solid #901dfc;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5),
+                        inset 0 0 15px rgba(138, 43, 226, 0.3);
+        }
+
+        /* Left Side Form Styles */
+        .login-section {
+            width: 50%;
+            padding: 5% 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        /* NUVIA Custom Logo Styling */
+        .nuvia-logo {
+            width: 75px;
+            height: 75px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4), 0 0 25px rgba(168, 85, 247, 0.3);
+            animation: popUpElement 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s backwards;
+        }
+
+        .login-section h2 {
+            color: #ffffff;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+            animation: popUpElement 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s backwards;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 25px;
+            border-bottom: 1.5px solid #8a8898;
+            transition: border-color 0.3s;
+        }
+
+        .input-box:nth-of-type(1) {
+            animation: popUpElement 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s backwards;
+        }
+
+        .input-box:nth-of-type(2) {
+            animation: popUpElement 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.6s backwards;
+        }
+
+        .input-box:focus-within {
+            border-color: #38bdf8;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 10px 35px 10px 0;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .input-box input::placeholder {
+            color: #8a8898;
+        }
+
+        .input-box i {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8a8898;
+            font-size: 1rem;
+        }
+
+        /* Pop-Up Animated Submit Button */
+        .btn-login {
+            width: 100%;
+            height: 48px;
+            background: linear-gradient(135deg, #560e91, #aa54fa);
+            border: none;
+            outline: none;
+            border-radius: 25px;
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(154, 49, 253, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: popUpElement 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s backwards;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px) scale(1.O5);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+        }
+
+        .signup-text {
+            color: #8a8898;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-top: 25px;
+            animation: popUpElement 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s backwards;
+        }
+
+        .signup-text a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Right Side Banner Section */
+        .banner-section {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 65%;
+            height: 100%;
+            background: linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%);
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            padding-right: 8%;
+            text-align: right;
+            z-index: 1;
+        }
+
+        .banner-content {
+            max-width: 320px;
+            animation: slideInRight 1s ease-out 0.3s backwards;
+        }
+
+        .banner-content h1 {
+            color: #ffffff;
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .banner-content p {
+            color: #e9d5ff;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Keyframe Animations */
+        @keyframes popUpElement {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.8);
+            }
+            70% {
+                transform: translateY(-5px) scale(1.03);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="kiosk-wrapper">
+        <!-- Main Kiosk Screen Frame -->
+        <div class="kiosk-frame">
+            <div class="container">
+                <!-- Left Section: Form -->
+                <div class="login-section">
+                    <!-- NUVIA Image Logo -->
+                    <img class="nuvia-logo" src="c:\Users\user\Pictures\ChatGPT Image Aug 26, 2026, 07_41_58 PM.png" alt="NUVIA Logo">
+
+                    <h2>Login</h2>
+                    <form action="#">
+                        <div class="input-box">
+                            <input type="text" placeholder="Username" required>
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="input-box">
+                            <input type="password" placeholder="Password" required>
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <button type="submit" class="btn-login">Login</button>
+                    </form>
+                    <p class="signup-text">
+                        Don't have an account? <a href="#">Sign Up</a>
+                    </p>
+                </div>
+
+                <!-- Right Section: Graphic Panel -->
+                <div class="banner-section">
+                    <div class="banner-content">
+                        <h1>WELCOME<br>BACK!</h1>
+                        <p>To keep connected with us please login or sign-in with your personal info.</p>
+                        <p>Made by: Joemar Paul Labanon BSIT 2A</p>
+                        <p>DESCRIPTION: This website is just an experimental only. This is still under maintenance.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Glowing LED Strip -->
+            <div class="led-bar"></div>
+        </div>
+    </div>
+
+</body>
+</html>
